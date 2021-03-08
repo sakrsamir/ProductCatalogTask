@@ -128,14 +128,33 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103081709323_AddProductModel.cs" />
+    <Compile Include="Migrations\202103081709323_AddProductModel.designer.cs">
+      <DependentUpon>202103081709323_AddProductModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103081721351_ConfigureCurrency.cs" />
+    <Compile Include="Migrations\202103081721351_ConfigureCurrency.designer.cs">
+      <DependentUpon>202103081721351_ConfigureCurrency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103081849363_updateProductmodel.cs" />
+    <Compile Include="Migrations\202103081849363_updateProductmodel.designer.cs">
+      <DependentUpon>202103081849363_updateProductmodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View Models\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ProductCatalog.Models.ApplicationDbContext.mdf" />
+    <Content Include="App_Data\ProductCatalog.Models.ApplicationDbContext_log.ldf">
+      <DependentUpon>ProductCatalog.Models.ApplicationDbContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -171,9 +190,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="ProductsImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -187,6 +207,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103081709323_AddProductModel.resx">
+      <DependentUpon>202103081709323_AddProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103081721351_ConfigureCurrency.resx">
+      <DependentUpon>202103081721351_ConfigureCurrency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103081849363_updateProductmodel.resx">
+      <DependentUpon>202103081849363_updateProductmodel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

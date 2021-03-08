@@ -1,0 +1,34 @@
+﻿@model ProductCatalog.View_Models.ProductViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create New Product</h2>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p class="alert alert-info">All Fields are <strong>Required</strong>.</p>
+   
+    <div class="form-group">
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(p => p.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Price)
+        @Html.TextBoxFor(p => p.Price, new { @class = "form-control", placeholder = "00:00" })
+        @Html.ValidationMessageFor(p => p.Price)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Image)
+        @Html.EditorFor(p => p.Image, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+        @Html.ValidationMessageFor(p => p.Image)
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
