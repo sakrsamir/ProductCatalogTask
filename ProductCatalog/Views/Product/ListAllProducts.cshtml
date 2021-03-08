@@ -4,42 +4,11 @@
 }
 
 <h2>All Products</h2>
-<ul class="products voffset4">
-    @foreach (var product in Model)
-    {
-    <li>
-        @*<div>
-            <h3>@product.Name</h3>
-            <h5>@product.Price</h5>
-            <img src="~/@product.GetImage(Server.MapPath(Server.MapPath("~/ProductsImages")))" width="150" height="150" />
-        </div>*@
 
-
-        <div class="productImage">
-            <img src="~/@product.GetImage(Server.MapPath("~/ProductsImages"))" />
-        </div>
-        <div class="details">
-            <span class="ProductName">
-                @product.Name
-
-
-            </span>
-            <span class="ProductPrice">
-                @product.Price - USD
-            </span>
-            <span class="ProductPrice">
-                <a href="@Url.Action("CreateOrUpdate","Product",new { Id=product.Id})" class="btn btn-default btn-sm js-toggle-edit" data-user-id="@product.Id" >Edit</a>
-            </span>
-            <span class="ProductPrice">
-                <button class="btn btn-link btn-sm  js-toggle-delete" data-user-id="@product.Id">Delete</button>
-            </span>
-
-        </div>
-
-
-
-    </li>
-    }
-
-</ul>
+<div class="row">
+    <div class="co-md-6">
+        @Html.Partial("_ListAllProducts",Model)
+    </div>
+    <div class="co-md-6"></div>
+</div>
 

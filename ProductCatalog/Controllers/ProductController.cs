@@ -82,13 +82,19 @@ namespace ProductCatalog.Controllers
                     Id = p.Id, Name = p.Name,Price=p.Price
                 }).ToList();
             return View(products);
+        }
 
-            //List<ProductViewModel> productViewModels = new List<ProductViewModel>();
-            //foreach (var p in products)
-            //{
-            //    ProductViewModel productViewModel=new ProductViewModel {Id=p.Id,Name=p.Name }
-            //}
-            
+        public ActionResult _ListAllProducts()
+        {
+            var products = _context.Products
+                .Select(p =>
+                new ProductViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price
+                }).ToList();
+            return PartialView(products);
         }
     }
 }

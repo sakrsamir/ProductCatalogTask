@@ -192,6 +192,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\CreateOrUpdate.cshtml" />
     <Content Include="Views\Product\ListAllProducts.cshtml" />
+    <Content Include="Views\Product\_ListAllProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProductsImages\" />
