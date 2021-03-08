@@ -29,3 +29,94 @@ textarea {
 .field-validation-error{
     color:red;
 }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 17px;
+    padding: 20px 15px;
+    border-radius: 9px;
+}
+
+    .form-control:focus {
+        border-color: #2196f3;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+.btn {
+    /*font-size: 17px;
+    padding:7px 20px;*/
+    border-radius: 9px;
+}
+
+
+/* Page -Level Styles*/
+.products {
+    list-style: none;
+}
+
+.products > li {
+    position: relative;
+    margin-bottom: 30px;
+    }
+
+.products > li .productImage {
+    width: 155px;
+    height:155px;
+    border:2px solid red;
+    text-align:center
+        }
+.products > li .productImage >img {
+     width:150px;
+     height:150px;
+}
+
+.products > li .details {
+     position: absolute;
+     top: 0;
+     left: 170px;
+}
+
+.products > li .details .ProductName {
+      padding:10px 0px;
+      font-size: 20px;
+      font-weight: bold;
+      display: block;
+ }
+
+.products > li .details .ProductPrice {
+     font-size: 18px;
+     display:block;
+     padding:3px 0px;
+ }
+
+
+
+            /* Offset*/
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 20px;
+}
+
+.voffset4 {
+    margin-top: 40px;
+}
+
+.voffset5 {
+    margin-top: 80px;
+}
