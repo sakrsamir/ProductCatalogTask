@@ -16,6 +16,7 @@ namespace ProductCatalog.Models
         [DataType(DataType.Currency)]
         public float Price { get; set; }
         public DateTime? LastUpdated { get; set; }
+        public bool? IsDeleted { get; set; }
 
     }
 }

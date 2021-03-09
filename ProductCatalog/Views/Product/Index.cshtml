@@ -1,0 +1,39 @@
+﻿@model ProductCatalog.View_Models.HomeViewModel
+@*<h2>All Products</h2>*@
+
+
+<div class="row">
+    <div class="Filter">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "frmSearchProduct" }))
+        {
+            <div class="form-group">
+                <input type="text" class="form-control center-block" name="Name" value="" />
+            </div>
+
+            <div class="form-group ">
+                <a href="javascript:();" class="btn btn-primary btn-md  text-white" onclick="SearchProduct()"> Search </a>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 AllProducts">
+
+        @Html.Partial("_ListAllProducts", Model.products)
+    </div>
+    <div class="col-sm-2 space"></div>
+    <div class="col-sm-4 functions">
+        @Html.Partial("_CreateOrUpdate", Model.AddOrEditModel)
+    </div>
+</div>
+
+<script>
+    function SearchProduct() {
+        $.post("@Url.Action("_ListAllProducts", "Product")",
+            $("#frmSearchProduct").serialize(), function (res) {
+                $('.AllProducts').html(res);
+        });
+
+    }
+</script>
+

@@ -120,3 +120,43 @@ textarea {
 .voffset5 {
     margin-top: 80px;
 }
+
+
+.center-block {
+    margin: auto;
+    display: block;
+}
+.Filter {
+    text-align: center;
+   
+    padding:5px 5px;
+    margin:5px 5px;
+}
+.AllProducts{
+    
+}
+.functions {
+    background: #eee;
+    padding:10px 10px;
+}
+.space {
+    border-right: 2px solid red;
+}
+.red{
+    color:red;
+}
+.mod{
+    background:gray;
+}
+.mod2 {
+    background: #faadad;
+}
+.mod3 {
+    background: #7e6565;
+}
+.jumbotron{
+    padding-top:5px;
+}
+.blue{
+    color:blue;
+}

@@ -1,31 +1,42 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Product Catlog";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row ">
+    <h3 class="text-center red">Product Catlog Task</h3>
+
+    <div class="col-sm-7">
+
+
+
+        <h3 class="red">Models</h3>
+        <p> 1 - Only One Product Model.</p>
+        <h3 class="red">Controllers</h3>
+        <p> 1 - Home controller </p>
+        <p>  - Index Action  </p>
+        <p> 2 - Product controller </p>
+        <p>  - Index Action -- display the whole view of product mangment  </p>
+        <p>  - _ListAllProducts Action -- return Partial view for all products With Search  </p>
+        <p>  - DeleteProduct Action -- Delete a product With Ajax Request   </p>
+        <p>  - _CreateOrUpdate Action -- Manage Create and Update return partial view  </p>
+
+        <h3 class="red">View Models</h3>
+        <p> 1 - Product ViewModel : has attributes of product model and some methods </p>
+        <p>  - <span class="blue">GetImage(string path)</span> // Get image from ProductsImages server folder with it's extentions </p>
+        <p>  - <span class="blue">SaveImageToserver(HttpPostedFileBase file,string path)</span> // Save Image to the sever with id of product and same extention that was uploaded  </p>
+
+
+
+
+    </div>
+    <div class="col-sm-5">
+
+        @*<h3 class="text-center">Page mangement View</h3>
+        <p class="text-center mod">Search</p>
+        <div class="col-sm-6 text-center mod2">_ListAllProducts Partial view</div>
+        <div class="col-sm-6 text-center mod3">_CreateOrUpdate Partial view</div>*@
+        <img src="~/digram.png" width="550" />
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+

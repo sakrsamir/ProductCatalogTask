@@ -1,5 +1,7 @@
 ﻿using ProductCatalog.Models;
 using ProductCatalog.View_Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -13,18 +15,66 @@ namespace ProductCatalog.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        // GET: Product
-        public ActionResult CreateOrUpdate(int Id=0)
+
+
+        public ActionResult Index()
+        {
+            var products = _context.Products
+                .Where(p=>p.IsDeleted != true)
+                .Select(p => 
+                new ProductViewModel
+                {
+                    Id = p.Id, Name = p.Name,Price=p.Price
+                }).ToList();
+            var HomeViewModel = new HomeViewModel
+            {
+                products = products,
+                AddOrEditModel = new ProductViewModel { }
+            };
+            ViewBag.Title = "New Product";
+            return View(HomeViewModel);
+        }
+
+        public ActionResult _ListAllProducts(string name="") // select all && use for filter
+        {
+            List<ProductViewModel> products;
+           
+                products = _context.Products
+                .Where(p => p.IsDeleted != true&&p.Name.Contains(name))
+                .Select(p =>
+                new ProductViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price
+                }).ToList();
+            
+            return PartialView(products);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProduct(int Id)
+        {
+            var product = _context.Products.Where(p => p.Id == Id).FirstOrDefault();
+            if (product!=null)
+            {
+                product.IsDeleted = true;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("_ListAllProducts","Product");
+        }
+
+        public ActionResult _CreateOrUpdate(int Id = 0)
         {
             var viewModel = new ProductViewModel();
             ViewBag.Title = "New Product";
-            if (Id!=0) // Edit
+            if (Id != 0) // Edit
             {
                 var product = _context.Products.Where(p => p.Id == Id).FirstOrDefault();
-                if (product!=null)
+                if (product != null)
                 {
                     viewModel.Id = product.Id;
-                    viewModel.Image=viewModel.GetImage(Server.MapPath("~/ProductsImages"));
+                    viewModel.Image = viewModel.GetImage(Server.MapPath("~/ProductsImages"));
                     viewModel.Name = product.Name;
                     viewModel.Price = product.Price;
 
@@ -32,19 +82,23 @@ namespace ProductCatalog.Controllers
 
                 }
             }
-            return View(viewModel);
+            return PartialView(viewModel);
         }
 
-
-
         [HttpPost]
-        public ActionResult CreateOrUpdate(ProductViewModel viewModel)
+        public ActionResult _CreateOrUpdate(ProductViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View("Create");
+                return RedirectToAction("_ListAllProducts");
 
-            if (viewModel.Id!=0) // update
+
+
+            if (viewModel.Id != 0) // update
             {
+                var product = _context.Products.Where(p => p.Id == viewModel.Id).FirstOrDefault();
+                product.Name = viewModel.Name;
+                product.Price = viewModel.Price;
+                product.LastUpdated = DateTime.Now;
 
 
             }
@@ -57,44 +111,22 @@ namespace ProductCatalog.Controllers
                     Price = viewModel.Price
                 };
                 _context.Products.Add(product);
-                _context.SaveChanges();
 
 
-                viewModel.Id = product.Id; // update id to save image named with this id
-                viewModel.SaveImageToserver(Request.Files[0], Server.MapPath("~/ProductsImages"));
-
+                if (Request.Files.Count>0)
+                {
+                    viewModel.Id = product.Id; // update id to save image named with this id
+                    viewModel.SaveImageToserver(Request.Files[0], Server.MapPath("~/ProductsImages"));
+                }
                 
+
+
             }
-            
-
-            
-
-            return RedirectToAction("Index","Home");
-        }
 
 
-        public ActionResult ListAllProducts()
-        {
-            var products = _context.Products
-                .Select(p => 
-                new ProductViewModel
-                {
-                    Id = p.Id, Name = p.Name,Price=p.Price
-                }).ToList();
-            return View(products);
-        }
+            _context.SaveChanges();
 
-        public ActionResult _ListAllProducts()
-        {
-            var products = _context.Products
-                .Select(p =>
-                new ProductViewModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price
-                }).ToList();
-            return PartialView(products);
+            return RedirectToAction("_ListAllProducts");
         }
     }
 }

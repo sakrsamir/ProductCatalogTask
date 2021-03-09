@@ -16,14 +16,14 @@ namespace ProductCatalog.View_Models
 
         [DataType(DataType.Upload)]
         [Display(Name = "Upload File")]
-        [Required(ErrorMessage = "Please choose file to upload.")]
+        
         public string Image { get; set; }
 
 
 
-        public string GetImage(string path)
+        public string GetImage(string path) // Get image from ProductsImages server folder with it's extentions
         {
-            //var path = Server.MapPath("~/ProductsImages");
+            
             var images = Directory.GetFiles(path);
             foreach (var item in images)
             {
@@ -38,7 +38,7 @@ namespace ProductCatalog.View_Models
 
 
 
-        public void SaveImageToserver(HttpPostedFileBase file,string path)
+        public void SaveImageToserver(HttpPostedFileBase file,string path) // Save Image to the sever with id of product and same extention that was uploaded
         {
              path +=  "\\" + Id + Path.GetExtension(file.FileName);
             file.SaveAs(path);

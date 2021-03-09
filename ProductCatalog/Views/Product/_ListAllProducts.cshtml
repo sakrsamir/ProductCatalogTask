@@ -25,10 +25,10 @@
                     @product.Price - USD
                 </span>
                 <span class="ProductPrice">
-                    <a href="@Url.Action("CreateOrUpdate","Product",new { Id=product.Id})" class="btn btn-default btn-sm js-toggle-edit" data-user-id="@product.Id">Edit</a>
+                    <a href="javascript:();" onclick="EditProduct(@product.Id)" class="btn btn-default btn-sm">Edit</a>
                 </span>
                 <span class="ProductPrice">
-                    <button class="btn btn-link btn-sm  js-toggle-delete" data-Product-id="@product.Id">Delete</button>
+                    <a class="btn btn-link btn-sm " href="javascript:();" onclick="DeleteProduct(@product.Id)">Delete</a>
                 </span>
 
             </div>
@@ -42,25 +42,42 @@
 
 
 
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
 
-            $(".js-toggle-delete").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/followings", { "Id": button.attr("data-Product-id") })
-                    .done(function () {
-                        button.text("Following");
-                    })
-                    .fail(function () {
-                        alert("Something failed");
-                    })
+<script>
+
+
+        function DeleteProduct(id) {
+            if (confirm("Are you Sure To Remove This Product ?"))
+            {
+                $.post("@Url.Action("DeleteProduct", "Product")", { Id: id }, function (res) {
+                if (res != 0) {
+                    $(".AllProducts").html(res);
+                }
+            });
+            }
+            clearAll();
+        }
+
+    
+
+
+        function EditProduct(id) {
+
+                $.get("@Url.Action("_CreateOrUpdate", "Product")", { Id: id }, function (res) {
+                if (res != 0) {
+                    $(".functions").html(res);
+                }
             });
 
+    }
+
+    function clearAll() {
+        $.get("/Product/_CreateOrUpdate/", function (res) {
+            $(".functions").html(res);
         });
 
+    }
 
 
     </script>
-}
+
